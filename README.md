@@ -34,3 +34,18 @@ pip install -r requirements.txt
    ```
 
 Or use helper scripts in `scripts/`.
+
+
+## Run reasoner
+
+Run on-demand offline analysis (no web access):
+
+```bash
+python reasoner/run_reasoner.py
+```
+
+Optional demo mode (in-memory only; does not modify files):
+
+```bash
+REASONER_DEMO=1 python reasoner/run_reasoner.py
+```

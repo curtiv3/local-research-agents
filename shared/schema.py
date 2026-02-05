@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from hashlib import sha256
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 from urllib.parse import urlparse
 
 
@@ -51,6 +51,49 @@ class Fact:
             self.content_hash = make_hash(self.content)
         if not self.source_domain:
             self.source_domain = domain(self.source_url)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
+class Theory:
+    id: str
+    statement: str
+    source_url: str = "NONE"
+    evidence_quote: str = "NONE"
+    confidence: int = 50
+    ts: str = field(default_factory=now_utc_iso)
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
+class Unsure:
+    id: str
+    statement: str
+    source_url: str = "NONE"
+    evidence_quote: str = "NONE"
+    confidence: int = 50
+    ts: str = field(default_factory=now_utc_iso)
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
+class Question:
+    id: str
+    question: str
+    related_ids: List[str]
+    priority: int
+    reason: str
+    created_ts: str = field(default_factory=now_utc_iso)
+    status: str = "open"
+    metadata: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
