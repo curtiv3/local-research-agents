@@ -1,7 +1,11 @@
 @echo off
-REM Placeholder: starts online mode and then both agents.
-call "%~dp0online.bat"
-echo TODO: start collector
-REM python -m collector
-echo TODO: start reasoner
-REM python -m reasoner
+setlocal
+
+REM Start collector in separate window
+start "collector" cmd /k "cd /d %~dp0.. && python collector\agent.py"
+
+REM Start scheduler in separate window; it invokes reasoner only when needed
+start "reasoner-scheduler" cmd /k "cd /d %~dp0.. && python scripts\run_reasoner_if_needed.py"
+
+echo Collector and reasoner scheduler started.
+endlocal
