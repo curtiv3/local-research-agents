@@ -2,5 +2,14 @@
   "last_collector_run": null,
   "last_reasoner_run": null,
   "mode": "offline",
-  "notes": ""
+  "notes": "",
+  "last_query_index": 0,
+  "last_ts": null,
+  "counters": {
+    "FACT": 0,
+    "THEORY": 0,
+    "UNSURE": 0,
+    "TRASH": 0,
+    "TOTAL": 0
+  }
 }

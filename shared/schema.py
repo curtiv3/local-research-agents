@@ -43,6 +43,7 @@ class Fact:
     source_domain: str
     collected_at: str = field(default_factory=now_utc_iso)
     content_hash: Optional[str] = None
+    evidence_quote: str = "NONE"
     metadata: Dict[str, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
@@ -65,6 +66,7 @@ class Validation:
     rationale: str
     validated_at: str = field(default_factory=now_utc_iso)
     validator: str = "reasoner"
+    evidence_quote: str = "NONE"
     metadata: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
